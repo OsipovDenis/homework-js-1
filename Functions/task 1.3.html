@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+  function transformNum(num) {
+    let str = "" + num,
+        pPos = str.indexOf("."), //Захватываем точку
+        i;
+      //Первый пробел перед точкой
+    str = str.substring( 0, pPos - 3) + " " + str.substring( pPos - 3);
+    for ( i = 0; i < pPos / 3; i++) {
+      // берём последний пробел
+      let lastSPos = str.indexOf(" ");
+      // проверяем влезет ли ещё пробел, если да, то вставляем
+      if (( lastSPos - 3 ) > 0 ) {
+        str = str.substring( 0, lastSPos - 3) + " " + str.substring( lastSPos - 3 );
+      } else break;
+    }
+    return str;
+  }
+
+  console.log( transformNum( 1000000.01 ) );
+  console.log( transformNum( 12343.12 ) );
+  console.log( transformNum( -1242341.43) );
+  console.log( transformNum( -1223423423242341.421) );
+
+  </script>
+</body>
+
+</html>

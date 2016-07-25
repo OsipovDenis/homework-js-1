@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <title>Отсчет времени</title>
+  <meta charset="utf-8">
+  <style>
+    .clock {
+      font-family: Arial;
+      font-size: 35px;
+      border: 1px solid;
+      float: left;
+      padding: 10px;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div id="clock" class="clock">
+    <span class="years">2</span>
+    <span class="months">12</span>
+    <span class="days">1</span>
+    <span class="hours">1</span> :
+    <span class="minutes">41</span> :
+    <span class="seconds">50</span>
+  </div>
+  <script src="clock.js"></script>
+  <script>
+    let clock = new Clock({
+      elem: document.getElementById('clock')
+    });
+  clock.start();
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <style>
+    table {
+      border: 1px solid;
+      border-collapse: collapse;
+    }
+
+    thead td {
+      background-color: lightgray;
+    }
+
+    td {
+      border: 1px solid;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .today {
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+
+  <script>
+    function generate_table(year, month) { 
+      let body = document.getElementsByTagName("body")[0],
+          tbl     = document.createElement("table"),
+          tblHead = document.createElement("thead"),
+          tblBody = document.createElement("tbody"),
+          week = {
+            "1": "пн",
+            "2": "вт",
+            "3": "ср",
+            "4": "чт",
+            "5": "пт",
+            "6": "сб",
+            "7": "вс"
+          },
+          i, j,
+          date = new Date(year, month),
+          firstDay = getLocalDay(date.getDay()),
+          daysInMonth = new Date(year, month+1, 0).getDate(),
+          weeksInMonth = ( daysInMonth == 28 && firstDay == week[0] ) ? 4 : 5,
+          currentDate = 1;
+
+      // Заполняем шапку
+      let row = document.createElement("tr");
+      for (i = 1; i < 8; i++) {
+        let cell = document.createElement("td");
+        let cellText = document.createTextNode(week[i]);
+        cell.appendChild(cellText);    
+        row.appendChild(cell);
+      }
+      tblHead.appendChild(row);
+      tbl.appendChild(tblHead);
+      body.appendChild(tbl);
+      // Заполнили шапку
+
+      for (i = 0; i < weeksInMonth; i++) {
+        let row = document.createElement("tr");    
+
+        for (j = 1; j < 8; j++) {
+          // Первые пустые ячейки
+          if ( i == 0 && j < firstDay ) {
+            let cell = document.createElement("td");     
+            let cellText = document.createTextNode("");     
+            cell.appendChild(cellText);     
+            row.appendChild(cell);
+          // Ячейки с датами 
+          } else if( currentDate <= daysInMonth) {
+            let cell = document.createElement("td");     
+            let cellText = document.createTextNode(currentDate);     
+            cell.appendChild(cellText);     
+            row.appendChild(cell);
+            currentDate++;  
+            // Пустые последние ячейки
+          } else {
+            let cell = document.createElement("td");     
+            let cellText = document.createTextNode("");     
+            cell.appendChild(cellText);     
+            row.appendChild(cell); 
+          }
+        } 
+
+        tblBody.appendChild(row); 
+      }
+
+      tbl.appendChild(tblBody);
+      body.appendChild(tbl);
+
+      function getLocalDay(day){
+        if( day == 0 ) {
+          day = 7;
+        }
+        return day;
+      }
+    }
+    //Июль 2016
+    generate_table(2016, 6);
+    //Август 2016
+    generate_table(2016, 7);
+    //Февраль 2016
+    generate_table(2016, 1)
+    //Февраль 2015
+    generate_table(2015, 1)
+  </script>
+</body>
+
+</html>

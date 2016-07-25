@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+  function searchInArr(arr, val){
+    let srchVal = new RegExp(val, 'i'),
+        i, k;
+    for ( i = 0, k = arr.length; i < k; i++ ) {
+      if ( srchVal.test( arr[i] ) ) {
+        return true;
+      } else {
+        continue;
+      }
+    }
+    return false;
+  }
+
+  let str0 = "Меня зовут Денис и являюсь frontend-разработчиком.",
+      str1 = "В свободное время играю в футбол.",
+      str2 = "А бывает и не играю в футбол.",
+      arr = [ str0, str1, str2],
+      val0 = "время",
+      val1 = "frontend",
+      val2 = "дерево",
+      val3 = "ФУТБОЛ",
+      val4 = "я ";
+
+      console.log( searchInArr(arr, val0) );
+      console.log( searchInArr(arr, val1) );
+      console.log( searchInArr(arr, val2) );
+      console.log( searchInArr(arr, val3) );
+      console.log( searchInArr(arr, val4) );
+  </script>
+</body>
+
+</html>
